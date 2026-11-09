@@ -305,9 +305,20 @@ img, canvas { display: block; }
 @media (max-width: 760px) {
   .nav__links {
     position: fixed; top: 72px; left: 12px; right: 12px; flex-direction: column; border-radius: 20px;
-    background: rgba(26, 17, 11, 0.97); padding: 10px; opacity: 0; pointer-events: none; transform: translateY(-10px); transition: 0.3s;
+    background: #1e130c; padding: 10px; opacity: 0; pointer-events: none; transform: translateY(-10px); transition: 0.3s;
+    box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.7);
   }
   .nav__links.is-open { opacity: 1; pointer-events: auto; transform: none; }
+  .nav__links a { padding: 14px 16px; font-size: 16px; }
+  .hero { padding-top: 84px; }
+  .hero__3d { height: 380px; margin-bottom: 8px; }
+  .hero__title { margin-top: 18px; }
+  .hero__tag { font-size: 11px; padding: 7px 11px; }
+  .hero__tag--a { top: 6%; }
+  .hero__tag--b { bottom: 8%; right: 0; }
+  .giant { margin-bottom: 8px; }
+  .footer__news form { flex-direction: column; border-radius: 22px; }
+  .footer__news input { height: 46px; }
   .burger { display: flex; }
   .hide-sm { display: none; }
   .hero__stats { gap: 22px; }
