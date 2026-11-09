@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { View } from '@react-three/drei'
 import { ROASTS } from '../data'
@@ -26,11 +26,12 @@ export function SectionHead({ kicker, title, children }) {
 function ProductCard({ product, onOpen }) {
   const { add } = useCart()
   const [hovered, setHovered] = useState(false)
-  const [tilt, setTilt] = useState({ x: 0, y: 0 })
+  const inner = useRef()
 
   const onMove = (e) => {
     const r = e.currentTarget.getBoundingClientRect()
-    setTilt({ x: ((e.clientY - r.top) / r.height - 0.5) * -8, y: ((e.clientX - r.left) / r.width - 0.5) * 10 })
+    inner.current?.style.setProperty('--rx', `${((e.clientY - r.top) / r.height - 0.5) * -8}deg`)
+    inner.current?.style.setProperty('--ry', `${((e.clientX - r.left) / r.width - 0.5) * 10}deg`)
   }
 
   return (
@@ -45,11 +46,12 @@ function ProductCard({ product, onOpen }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => {
         setHovered(false)
-        setTilt({ x: 0, y: 0 })
+        inner.current?.style.setProperty('--rx', '0deg')
+        inner.current?.style.setProperty('--ry', '0deg')
       }}
       onMouseMove={onMove}
     >
-      <div className="card__inner" style={{ transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)` }}>
+      <div className="card__inner" ref={inner}>
         <button className="card__stage" onClick={() => onOpen(product)} aria-label={`View ${product.name}`}>
           <div className="card__halo" />
           <View className="view-fill">

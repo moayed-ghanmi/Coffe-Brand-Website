@@ -39,7 +39,8 @@ export default function Home() {
       <Canvas
         className="gl"
         shadows
-        dpr={[1, 2]}
+        gl={{ antialias: true, powerPreference: 'high-performance' }}
+        dpr={[1, 1.5]}
         eventSource={document.getElementById('root')}
         style={{ position: 'fixed', inset: 0, pointerEvents: 'none' }}
       >

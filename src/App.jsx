@@ -1,4 +1,5 @@
 import { lazy, Suspense, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { CartProvider } from './cart'
 import { StoreProvider } from './store'
 import { useRoute } from './utils'
@@ -16,9 +17,10 @@ export default function App() {
   }, [path])
 
   let page
-  if (path === '/checkout') page = <Checkout />
-  else if (path.startsWith('/order/')) page = <OrderPage id={decodeURIComponent(path.slice(7))} />
-  else if (path.startsWith('/admin')) page = <Admin path={path} />
+  let key = 'home'
+  if (path === '/checkout') [page, key] = [<Checkout />, 'checkout']
+  else if (path.startsWith('/order/')) [page, key] = [<OrderPage id={decodeURIComponent(path.slice(7))} />, 'order']
+  else if (path.startsWith('/admin')) [page, key] = [<Admin path={path} />, 'admin']
   else page = <Home />
 
   return (
@@ -31,7 +33,11 @@ export default function App() {
             </div>
           }
         >
-          {page}
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div key={key} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.25 }}>
+              {page}
+            </motion.div>
+          </AnimatePresence>
         </Suspense>
       </CartProvider>
     </StoreProvider>

@@ -47,7 +47,7 @@ export function ProductModal({ product, onClose }) {
               ✕
             </button>
             <div className="modal__stage">
-              <Canvas shadows dpr={[1, 2]}>
+              <Canvas shadows dpr={[1, 1.5]}>
                 <BagScene product={product} distance={5.2} />
                 <OrbitControls enablePan={false} enableZoom={false} autoRotate autoRotateSpeed={1.5} />
               </Canvas>

@@ -1,19 +1,11 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useStore } from '../store'
-import { navigate } from '../utils'
 import Dashboard from './Dashboard'
 import Orders from './Orders'
 import Products from './Products'
 import Customers from './Customers'
 import Coupons from './Coupons'
-
-/*
- * Demo-only gate: the password lives in the client bundle and is NOT real security.
- * Replace with server-side authentication before handling real orders.
- */
-const DEMO_PASSWORD = 'volta-admin'
-const SESSION_KEY = 'volta-admin-session'
 
 const SECTIONS = [
   { path: '/admin', label: 'Dashboard', icon: '◎', el: Dashboard },
@@ -23,73 +15,9 @@ const SECTIONS = [
   { path: '/admin/coupons', label: 'Promo codes', icon: '%', el: Coupons },
 ]
 
-function Login({ onLogin }) {
-  const [pw, setPw] = useState('')
-  const [error, setError] = useState(false)
-  const submit = (e) => {
-    e.preventDefault()
-    if (pw === DEMO_PASSWORD) onLogin()
-    else setError(true)
-  }
-  return (
-    <div className="adm-login">
-      <motion.form
-        className="adm-login__card"
-        onSubmit={submit}
-        initial={{ opacity: 0, y: 30 }}
-        animate={error ? { x: [0, -10, 10, -6, 6, 0], opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
-        transition={{ duration: 0.4 }}
-        key={error ? 'err' : 'ok'}
-      >
-        <div className="logo">
-          <svg viewBox="0 0 32 32" width="32" height="32" aria-hidden>
-            <rect width="32" height="32" rx="9" fill="var(--crema)" />
-            <path d="M9 8l7 17 7-17" fill="none" stroke="#1a0f0a" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-          VOLTA <span className="adm-tag">Admin</span>
-        </div>
-        <h1>Welcome back</h1>
-        <p className="muted small">Sign in to manage orders, products and promotions.</p>
-        <label className={`field ${error ? 'has-error' : ''}`}>
-          <span>Password</span>
-          <input
-            type="password"
-            autoFocus
-            value={pw}
-            onChange={(e) => {
-              setPw(e.target.value)
-              setError(false)
-            }}
-          />
-          {error && <em>Wrong password</em>}
-        </label>
-        <button className="btn btn--crema block">Sign in</button>
-        <p className="muted small center">
-          Demo password: <code>{DEMO_PASSWORD}</code>
-        </p>
-        <a href="#/" className="link small center">
-          ← Back to store
-        </a>
-      </motion.form>
-    </div>
-  )
-}
-
 export default function Admin({ path }) {
   const store = useStore()
-  const [authed, setAuthed] = useState(() => sessionStorage.getItem(SESSION_KEY) === '1')
   const [menu, setMenu] = useState(false)
-
-  if (!authed) {
-    return (
-      <Login
-        onLogin={() => {
-          sessionStorage.setItem(SESSION_KEY, '1')
-          setAuthed(true)
-        }}
-      />
-    )
-  }
 
   const section = SECTIONS.find((s) => s.path === path) ?? SECTIONS[0]
   const Page = section.el
@@ -126,16 +54,6 @@ export default function Admin({ path }) {
             }}
           >
             Reset demo data
-          </button>
-          <button
-            className="link small"
-            onClick={() => {
-              sessionStorage.removeItem(SESSION_KEY)
-              setAuthed(false)
-              navigate('/admin')
-            }}
-          >
-            Log out
           </button>
         </div>
       </aside>

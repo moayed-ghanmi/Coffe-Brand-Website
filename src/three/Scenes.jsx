@@ -10,7 +10,7 @@ export function StudioLights({ accent = '#d9a066' }) {
       <ambientLight intensity={0.35} />
       <directionalLight position={[3, 5, 4]} intensity={2.2} castShadow />
       <pointLight position={[-3, 1, 2]} intensity={14} color={accent} distance={8} />
-      <Environment resolution={256}>
+      <Environment resolution={128}>
         <Lightformer intensity={3} position={[0, 4, 3]} scale={[8, 2, 1]} />
         <Lightformer intensity={2} position={[-5, 1, -1]} rotation-y={Math.PI / 2} scale={[6, 2, 1]} />
         <Lightformer intensity={1.5} color={accent} position={[5, 0, 0]} rotation-y={-Math.PI / 2} scale={[4, 4, 1]} />
@@ -38,10 +38,10 @@ export function HeroScene() {
         <Float speed={1.4} rotationIntensity={0.2} floatIntensity={0.4}>
           <CoffeeCup scale={1.25} />
         </Float>
-        <BeanField count={30} />
+        <BeanField count={24} />
       </group>
-      <Sparkles count={50} scale={[6, 5, 4]} size={2.2} speed={0.35} color="#f1c58f" opacity={0.5} />
-      <ContactShadows position={[0, -1.7, 0]} opacity={0.55} scale={8} blur={2.6} far={3} />
+      <Sparkles count={30} scale={[6, 5, 4]} size={2.2} speed={0.35} color="#f1c58f" opacity={0.5} />
+      <ContactShadows position={[0, -1.7, 0]} opacity={0.55} scale={8} blur={2.6} far={3} frames={1} resolution={256} />
     </>
   )
 }
@@ -52,7 +52,7 @@ export function BagScene({ product, hovered, distance = 4.2 }) {
       <PerspectiveCamera makeDefault position={[0, 0, distance]} fov={35} />
       <StudioLights accent={product.color === '#2a1810' ? '#d9a066' : product.color} />
       <CoffeeBag product={product} hovered={hovered} />
-      <ContactShadows position={[0, -1.15, 0]} opacity={0.5} scale={4} blur={2.4} far={2} />
+      <ContactShadows position={[0, -1.15, 0]} opacity={0.5} scale={4} blur={2.4} far={2} frames={1} resolution={256} />
     </>
   )
 }
