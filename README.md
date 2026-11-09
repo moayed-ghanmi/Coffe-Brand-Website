@@ -21,4 +21,13 @@ npm run dev     # http://localhost:5173
 npm run build
 ```
 
+## Deploy to Vercel
+The repo includes `vercel.json` (Vite preset, `dist` output, SPA rewrite, long-term caching for hashed assets) and pins Node 22 via `.nvmrc`/`engines`.
+
+1. Go to [vercel.com/new](https://vercel.com/new) and import `moayed-ghanmi/Coffe-Brand-Website` from GitHub.
+2. Keep the detected settings (Framework: Vite · Build: `npm run build` · Output: `dist`). No environment variables are needed.
+3. Click **Deploy**. Every push to `main` redeploys production; pull requests get preview URLs.
+
+Or from the CLI: `npm i -g vercel && vercel --prod`.
+
 > Demo storefront: payments are simulated and no real charges are made. There is no backend yet. Products, orders and promo codes live in the browser's `localStorage` (`src/store.jsx`), seeded with sample orders. The admin portal has **no authentication** in this demo. Before going live, move the store actions to an API, protect `#/admin` with server-side authentication, and add a real payment provider (e.g. Stripe).
