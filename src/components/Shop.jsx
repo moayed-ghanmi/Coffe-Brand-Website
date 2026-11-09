@@ -40,7 +40,7 @@ function ProductCard({ product, onOpen }) {
       exit={{ opacity: 0, scale: 0.9 }}
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
       className="card"
-      style={{ '--accent': product.color === '#1d1d1f' ? '#d4ff3a' : product.color }}
+      style={{ '--accent': product.color === '#2a1810' ? '#d9a066' : product.color }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => {
         setHovered(false)
@@ -75,7 +75,7 @@ function ProductCard({ product, onOpen }) {
               Details
             </button>
             <button
-              className="btn btn--lime btn--sm"
+              className="btn btn--crema btn--sm"
               onClick={() =>
                 add({
                   key: `${product.id}-250g-Whole Bean`,
@@ -103,7 +103,7 @@ export function Shop({ onOpen }) {
 
   return (
     <section className="section" id="shop">
-      <SectionHead kicker="The Lineup" title={<>Beans with <span className="lime">voltage.</span></>}>
+      <SectionHead kicker="The Lineup" title={<>Beans with <span className="crema">voltage.</span></>}>
         <div className="pills" role="tablist">
           {ROASTS.map((r) => (
             <button key={r} role="tab" aria-selected={filter === r} className="pill" onClick={() => setFilter(r)}>

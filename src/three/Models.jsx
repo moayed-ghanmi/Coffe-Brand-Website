@@ -108,12 +108,12 @@ export function CoffeeCup(props) {
   return (
     <group {...props}>
       <mesh geometry={lathe} castShadow receiveShadow>
-        <meshPhysicalMaterial color="#121212" roughness={0.25} clearcoat={1} clearcoatRoughness={0.1} side={THREE.DoubleSide} />
+        <meshPhysicalMaterial color="#efe4d4" roughness={0.3} clearcoat={1} clearcoatRoughness={0.1} side={THREE.DoubleSide} />
       </mesh>
       {/* brand ring */}
       <mesh position={[0, 0.72, 0]} rotation={[Math.PI / 2, 0, 0]}>
         <torusGeometry args={[0.705, 0.018, 16, 96]} />
-        <meshStandardMaterial color="#d4ff3a" emissive="#d4ff3a" emissiveIntensity={1.4} toneMapped={false} />
+        <meshStandardMaterial color="#d9a066" emissive="#d9a066" emissiveIntensity={0.6} toneMapped={false} />
       </mesh>
       {/* coffee + crema */}
       <mesh position={[0, 0.93, 0]} rotation={[-Math.PI / 2, 0, 0]}>
@@ -127,12 +127,12 @@ export function CoffeeCup(props) {
       {/* handle */}
       <mesh position={[0.74, 0.55, 0]} rotation={[0, 0, -Math.PI / 2]} castShadow>
         <torusGeometry args={[0.24, 0.065, 20, 48, Math.PI]} />
-        <meshPhysicalMaterial color="#121212" roughness={0.25} clearcoat={1} />
+        <meshPhysicalMaterial color="#efe4d4" roughness={0.3} clearcoat={1} />
       </mesh>
       {/* saucer */}
       <mesh position={[0, -0.03, 0]} receiveShadow castShadow>
         <cylinderGeometry args={[1.15, 0.8, 0.07, 96]} />
-        <meshPhysicalMaterial color="#1b1b1b" roughness={0.3} clearcoat={1} />
+        <meshPhysicalMaterial color="#e3d3bd" roughness={0.35} clearcoat={1} />
       </mesh>
       <Steam />
     </group>
@@ -193,7 +193,7 @@ function useLabelTexture(product) {
 export function CoffeeBag({ product, hovered = false, spin = true, ...props }) {
   const ref = useRef()
   const label = useLabelTexture(product)
-  const bagColor = product.color === '#1d1d1f' ? '#1d1d1f' : '#0e0e0e'
+  const bagColor = product.color === '#2a1810' ? '#1e110a' : '#3b2618'
 
   useFrame((state, dt) => {
     if (!ref.current) return

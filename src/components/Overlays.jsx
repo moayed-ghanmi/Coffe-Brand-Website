@@ -40,7 +40,7 @@ export function ProductModal({ product, onClose }) {
             exit={{ y: 40, opacity: 0, scale: 0.96 }}
             transition={{ type: 'spring', damping: 26, stiffness: 260 }}
             onClick={(e) => e.stopPropagation()}
-            style={{ '--accent': product.color === '#1d1d1f' ? '#d4ff3a' : product.color }}
+            style={{ '--accent': product.color === '#2a1810' ? '#d9a066' : product.color }}
           >
             <button className="modal__close" onClick={onClose} aria-label="Close">
               ✕
@@ -92,7 +92,7 @@ export function ProductModal({ product, onClose }) {
                   </button>
                 </div>
                 <button
-                  className="btn btn--lime grow"
+                  className="btn btn--crema grow"
                   onClick={() => {
                     add({
                       key: `${product.id}-${size.label}-${grind}`,
@@ -161,14 +161,14 @@ export function CartDrawer() {
                 <p className="muted">
                   {order.id} · ${order.total}. Your beans hit the roaster on the next roast day. ☕
                 </p>
-                <button className="btn btn--lime" onClick={close}>
+                <button className="btn btn--crema" onClick={close}>
                   Keep browsing
                 </button>
               </motion.div>
             ) : items.length === 0 ? (
               <div className="drawer__empty">
                 <p className="muted">Your cart is empty. Time to fix that.</p>
-                <a href="#shop" className="btn btn--lime" onClick={close}>
+                <a href="#shop" className="btn btn--crema" onClick={close}>
                   Shop coffee
                 </a>
               </div>
@@ -217,7 +217,7 @@ export function CartDrawer() {
                     <span>Shipping</span>
                     <span>{pct >= 1 ? 'Free' : '$5'}</span>
                   </div>
-                  <button className="btn btn--lime block" onClick={checkout}>
+                  <button className="btn btn--crema block" onClick={checkout}>
                     Checkout — ${subtotal + (pct >= 1 ? 0 : 5)}
                   </button>
                 </div>

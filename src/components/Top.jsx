@@ -30,8 +30,8 @@ export function Nav() {
       <motion.div className="nav__progress" style={{ scaleX: progress }} />
       <a href="#top" className="logo" aria-label="Volta home">
         <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden>
-          <rect width="32" height="32" rx="9" fill="var(--lime)" />
-          <path d="M9 8l7 17 7-17" fill="none" stroke="#0a0a0a" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+          <rect width="32" height="32" rx="9" fill="var(--crema)" />
+          <path d="M9 8l7 17 7-17" fill="none" stroke="#1a0f0a" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
         VOLTA
       </a>
@@ -92,7 +92,7 @@ export function Hero() {
           {words.map((w, i) => (
             <span className="word-mask" key={w}>
               <motion.span
-                className={i === 2 ? 'lime' : ''}
+                className={i === 2 ? 'crema' : ''}
                 initial={{ y: '110%' }}
                 animate={{ y: 0 }}
                 transition={{ delay: 0.2 + i * 0.12, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
@@ -116,7 +116,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8 }}
         >
-          <a href="#shop" className="btn btn--lime">
+          <a href="#shop" className="btn btn--crema">
             Shop the beans <span aria-hidden>→</span>
           </a>
           <a href="#plans" className="btn btn--ghost">
@@ -162,7 +162,7 @@ export function Hero() {
   )
 }
 
-export function Marquee({ items, reverse = false, variant = 'lime' }) {
+export function Marquee({ items, reverse = false, variant = 'crema' }) {
   const row = [...items, ...items]
   return (
     <div className={`marquee marquee--${variant}`}>

@@ -5,17 +5,17 @@ import { SectionHead, reveal } from './Shop'
 import { Marquee } from './Top'
 
 const TILES = [
-  { title: 'Cold Brew Lab', text: '18-hour steeped concentrate, delivered chilled.', tag: 'NEW', bg: 'linear-gradient(135deg,#1a2a05,#d4ff3a 160%)', span: 'wide' },
-  { title: 'Barista Academy', text: 'Free video courses from latte art to dialing in.', tag: 'FREE', bg: 'linear-gradient(135deg,#1e0f2e,#b18cff 170%)' },
-  { title: 'Gift Cards', text: 'Instant e-gift, any amount.', bg: 'linear-gradient(135deg,#2e1206,#ff5b2e 170%)' },
-  { title: 'Brew Gear', text: 'Grinders, kettles and drippers we actually use.', tag: 'SOON', bg: 'linear-gradient(135deg,#06222a,#3ae0ff 170%)' },
-  { title: 'Wholesale', text: 'Fresh-roast programs for cafés and offices.', bg: 'linear-gradient(135deg,#2a2005,#ffc93c 170%)' },
+  { title: 'Cold Brew Lab', text: '18-hour steeped concentrate, delivered chilled.', tag: 'NEW', bg: 'linear-gradient(135deg,#2a1810,#d9a066 160%)', span: 'wide' },
+  { title: 'Barista Academy', text: 'Free video courses from latte art to dialing in.', tag: 'FREE', bg: 'linear-gradient(135deg,#1f120b,#a8484a 170%)' },
+  { title: 'Gift Cards', text: 'Instant e-gift, any amount.', bg: 'linear-gradient(135deg,#24160c,#c98a4b 170%)' },
+  { title: 'Brew Gear', text: 'Grinders, kettles and drippers we actually use.', tag: 'SOON', bg: 'linear-gradient(135deg,#1a120c,#8b5a3c 170%)' },
+  { title: 'Wholesale', text: 'Fresh-roast programs for cafés and offices.', bg: 'linear-gradient(135deg,#2a1d0c,#d9a441 170%)' },
 ]
 
 export function Explore() {
   return (
     <section className="section" id="explore">
-      <SectionHead kicker="Explore" title={<>More than <span className="lime">a bag of beans.</span></>} />
+      <SectionHead kicker="Explore" title={<>More than <span className="crema">a bag of beans.</span></>} />
       <div className="tiles">
         {TILES.map((t, i) => (
           <motion.a
@@ -54,7 +54,7 @@ export function Process() {
       <motion.h2 className="giant" style={{ x }} aria-hidden>
         SEED TO CUP · SEED TO CUP ·
       </motion.h2>
-      <SectionHead kicker="Process" title={<>From farm to <span className="lime">your first sip.</span></>} />
+      <SectionHead kicker="Process" title={<>From farm to <span className="crema">your first sip.</span></>} />
       <div className="steps">
         <motion.div className="steps__line" style={{ scaleX: line }} />
         {STEPS.map((s, i) => (
@@ -79,7 +79,7 @@ export function Process() {
 export function Plans() {
   return (
     <section className="section" id="plans">
-      <SectionHead kicker="Subscribe" title={<>Never run <span className="lime">dry.</span></>}>
+      <SectionHead kicker="Subscribe" title={<>Never run <span className="crema">dry.</span></>}>
         <p className="muted center">Fresh coffee on autopilot. Skip, swap or cancel anytime.</p>
       </SectionHead>
       <div className="plans">
@@ -151,7 +151,7 @@ export function Footer() {
             }}
           >
             <input type="email" required placeholder="you@email.com" aria-label="Email" />
-            <button className="btn btn--lime">Subscribe</button>
+            <button className="btn btn--crema">Subscribe</button>
           </form>
         </motion.div>
         <div className="footer__cols">

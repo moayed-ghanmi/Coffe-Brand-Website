@@ -4,7 +4,7 @@ import { ContactShadows, Environment, Float, Lightformer, PerspectiveCamera, Spa
 import * as THREE from 'three'
 import { BeanField, CoffeeBag, CoffeeCup } from './Models'
 
-export function StudioLights({ accent = '#d4ff3a' }) {
+export function StudioLights({ accent = '#d9a066' }) {
   return (
     <>
       <ambientLight intensity={0.35} />
@@ -40,7 +40,7 @@ export function HeroScene() {
         </Float>
         <BeanField count={30} />
       </group>
-      <Sparkles count={50} scale={[6, 5, 4]} size={2.2} speed={0.35} color="#d4ff3a" opacity={0.6} />
+      <Sparkles count={50} scale={[6, 5, 4]} size={2.2} speed={0.35} color="#f1c58f" opacity={0.5} />
       <ContactShadows position={[0, -1.7, 0]} opacity={0.55} scale={8} blur={2.6} far={3} />
     </>
   )
@@ -50,7 +50,7 @@ export function BagScene({ product, hovered, distance = 4.2 }) {
   return (
     <>
       <PerspectiveCamera makeDefault position={[0, 0, distance]} fov={35} />
-      <StudioLights accent={product.color === '#1d1d1f' ? '#d4ff3a' : product.color} />
+      <StudioLights accent={product.color === '#2a1810' ? '#d9a066' : product.color} />
       <CoffeeBag product={product} hovered={hovered} />
       <ContactShadows position={[0, -1.15, 0]} opacity={0.5} scale={4} blur={2.4} far={2} />
     </>
