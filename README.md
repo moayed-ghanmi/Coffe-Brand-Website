@@ -8,7 +8,9 @@ An animated, 3D coffee storefront inspired by the dark, neon-accent aesthetic of
 - **3D hero:** procedural glossy cup with rising steam, orbiting coffee beans and sparkles; reacts to pointer and scroll.
 - **3D product cards:** procedurally modelled coffee bags with canvas-drawn labels, all rendered through **one shared WebGL canvas** (drei `<View>`), with hover tilt and spin.
 - **Product modal:** drag-to-rotate bag viewer, size/grind options, quantity, and live pricing.
-- **Cart:** slide-out drawer, quantity edits, free-shipping progress bar, mock checkout. Persisted in `localStorage`.
+- **Cart:** slide-out drawer, quantity edits, free-shipping progress bar. Persisted in `localStorage`.
+- **Checkout (`#/checkout`):** 3-step flow (details → delivery → payment) with validation, delivery options, promo codes, an animated flipping card preview (card number check-digit validation), or cash on delivery. Leads to an order confirmation page with tracking (`#/order/:id`).
+- **Admin portal (`#/admin`):** dashboard (revenue, orders, AOV, 14-day revenue chart, status breakdown, top products, low stock), orders (search, filter, status updates, detail drawer with timeline), products (edit price/stock, hide/show, add, delete), customers, and promo codes. Demo password: `volta-admin`.
 - **Animations:** word-reveal headline, marquees, roast-filter pills with a shared layout, scroll-linked process section, staggered reveals and a scroll progress bar.
 - Responsive layout that respects `prefers-reduced-motion`.
 
@@ -19,4 +21,4 @@ npm run dev     # http://localhost:5173
 npm run build
 ```
 
-> Demo storefront: checkout is simulated and no payments are processed.
+> Demo storefront: payments are simulated and no real charges are made. There is no backend yet. Products, orders and promo codes live in the browser's `localStorage` (`src/store.jsx`), seeded with sample orders. The admin password is checked in the browser, so it is **not real security**. Before going live, move the store actions to an API with server-side auth and a real payment provider (e.g. Stripe).

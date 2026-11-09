@@ -174,7 +174,12 @@ export function Footer() {
       <div className="footer__word" aria-hidden>
         VOLTA
       </div>
-      <p className="footer__legal muted small">© 2026 Volta Coffee Roasters. Demo storefront — no real payments are processed.</p>
+      <p className="footer__legal muted small">
+        © 2026 Volta Coffee Roasters. Demo storefront — no real payments are processed. ·{' '}
+        <a href="#/admin" className="link">
+          Admin portal
+        </a>
+      </p>
     </footer>
   )
 }

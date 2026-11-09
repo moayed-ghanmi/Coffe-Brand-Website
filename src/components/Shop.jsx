@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { View } from '@react-three/drei'
-import { PRODUCTS, ROASTS } from '../data'
+import { ROASTS } from '../data'
+import { useStore } from '../store'
 import { useCart } from '../cart'
 import { BagScene } from '../three/Scenes'
 
@@ -70,12 +71,14 @@ function ProductCard({ product, onOpen }) {
               <span key={n}>{n}</span>
             ))}
           </div>
+          {product.stock > 0 && product.stock < 10 && <p className="low-stock">Only {product.stock} bags left</p>}
           <div className="card__actions">
             <button className="btn btn--ghost btn--sm" onClick={() => onOpen(product)}>
               Details
             </button>
             <button
               className="btn btn--crema btn--sm"
+              disabled={product.stock <= 0}
               onClick={() =>
                 add({
                   key: `${product.id}-250g-Whole Bean`,
@@ -88,7 +91,7 @@ function ProductCard({ product, onOpen }) {
                 })
               }
             >
-              Add to cart +
+              {product.stock <= 0 ? 'Sold out' : 'Add to cart +'}
             </button>
           </div>
         </div>
@@ -99,7 +102,9 @@ function ProductCard({ product, onOpen }) {
 
 export function Shop({ onOpen }) {
   const [filter, setFilter] = useState('All')
-  const list = filter === 'All' ? PRODUCTS : PRODUCTS.filter((p) => p.roast === filter)
+  const { products } = useStore()
+  const visible = products.filter((p) => p.active)
+  const list = filter === 'All' ? visible : visible.filter((p) => p.roast === filter)
 
   return (
     <section className="section" id="shop">

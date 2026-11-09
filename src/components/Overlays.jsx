@@ -5,6 +5,7 @@ import { OrbitControls } from '@react-three/drei'
 import { GRINDS, SIZES } from '../data'
 import { useCart } from '../cart'
 import { BagScene } from '../three/Scenes'
+import { navigate } from '../utils'
 
 export function ProductModal({ product, onClose }) {
   const { add } = useCart()
@@ -93,6 +94,7 @@ export function ProductModal({ product, onClose }) {
                 </div>
                 <button
                   className="btn btn--crema grow"
+                  disabled={product.stock <= 0}
                   onClick={() => {
                     add({
                       key: `${product.id}-${size.label}-${grind}`,
@@ -106,7 +108,7 @@ export function ProductModal({ product, onClose }) {
                     onClose()
                   }}
                 >
-                  Add to cart — ${unit * qty}
+                  {product.stock <= 0 ? 'Sold out' : `Add to cart — $${unit * qty}`}
                 </button>
               </div>
             </div>
@@ -120,18 +122,13 @@ export function ProductModal({ product, onClose }) {
 const FREE_SHIP = 50
 
 export function CartDrawer() {
-  const { items, open, setOpen, subtotal, changeQty, remove, clear } = useCart()
-  const [order, setOrder] = useState(null)
+  const { items, open, setOpen, subtotal, changeQty, remove } = useCart()
   const pct = Math.min(subtotal / FREE_SHIP, 1)
+  const close = () => setOpen(false)
 
   const checkout = () => {
-    setOrder({ id: `VLT-${Math.floor(100000 + Math.random() * 900000)}`, total: subtotal })
-    clear()
-  }
-
-  const close = () => {
     setOpen(false)
-    setTimeout(() => setOrder(null), 400)
+    navigate('/checkout')
   }
 
   return (
@@ -154,18 +151,7 @@ export function CartDrawer() {
               </button>
             </div>
 
-            {order ? (
-              <motion.div className="drawer__done" initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}>
-                <div className="done-icon">✓</div>
-                <h3>Order confirmed</h3>
-                <p className="muted">
-                  {order.id} · ${order.total}. Your beans hit the roaster on the next roast day. ☕
-                </p>
-                <button className="btn btn--crema" onClick={close}>
-                  Keep browsing
-                </button>
-              </motion.div>
-            ) : items.length === 0 ? (
+            {items.length === 0 ? (
               <div className="drawer__empty">
                 <p className="muted">Your cart is empty. Time to fix that.</p>
                 <a href="#shop" className="btn btn--crema" onClick={close}>
@@ -218,7 +204,7 @@ export function CartDrawer() {
                     <span>{pct >= 1 ? 'Free' : '$5'}</span>
                   </div>
                   <button className="btn btn--crema block" onClick={checkout}>
-                    Checkout — ${subtotal + (pct >= 1 ? 0 : 5)}
+                    Checkout — ${subtotal + (pct >= 1 ? 0 : 5)} →
                   </button>
                 </div>
               </>
